@@ -16,11 +16,12 @@ const MainPageTemplate = ({coopsData}) => {
   
   const renderCoops= () => {
     
-    const renderCoops = coops.map(({id_device, state_door,time_to_open,time_to_close,num_chickens,num_chicken_in_coop}) => {
+    const renderCoops = coops.map(({id_device, state_door,time_to_open,time_to_close,num_chickens,num_chicken_in_coop,url_images}) => {
       return (
         <Col span={4} key={id_device} 
           onClick={() => handleGoToCoopDetail(id_device)}
         >
+            <img src={url_images} alt="coopImage" width="250"></img>
             <h1>id_device: {id_device}</h1>
             <div>state_door: {state_door ? 'Open' : 'Close'}</div>
             <div>time_to_open: {time_to_open}</div>

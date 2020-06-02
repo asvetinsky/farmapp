@@ -11,7 +11,7 @@ export default ()=>{
         <Switch>
             <Route exact path='/' component={MainPage}/>
             <Route exact path='/coop/:id' component={CoopPage}/>
-            <Route exact path='/coop/edit/:id_device' component={CoopPageEdit}/>
+            <Route exact path='/coop/edit/:id' component={CoopPageEdit}/>
             
         </Switch>
     </BrowserRouter>

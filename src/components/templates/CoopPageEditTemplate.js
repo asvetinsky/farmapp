@@ -11,21 +11,23 @@ import Recipes from "../organisms/Recipes";
 
 const CoopPageEditTemplate = ({
   coopData,
-  stateDoor,
+  id_device,
+  state_door,
   stateDoorChange,
-  timeToOpen,
+  time_to_open,
   timeToOpenChange,
-  timeToClose,
+  time_to_close,
   timeToCloseChange,
-  numChickens,
+  num_chickens,
   numChickensChange,
-  numChickensInCoop,
+  num_chicken_in_coop,
   numChickensInCoopChange,
   onSaveClicked
   
   }) => {
   const { push } = useHistory();
 
+  /* 
   const { isLoading, error, coop } = coopData;
   const {
     id_device,
@@ -33,9 +35,9 @@ const CoopPageEditTemplate = ({
     time_to_open,
     time_to_close,
     num_chickens,
-    num_chicken_in_coop,
-    num_aggs,
+    num_chicken_in_coop
   } = coop;
+  */
 
   const handleGoToCoops = () => push(`/`);
 
@@ -75,12 +77,32 @@ const CoopPageEditTemplate = ({
         </div>
         <div>
           time_to_open: {time_to_open}
+          <Input
+          placeholder="time to open"
+          onChange={(e) => timeToOpenChange(e.target.value)}
+          value={time_to_open}
+        />
         </div>
         <div>
           time_to_close: {time_to_close}
+          <Input
+          placeholder="time to close"
+          onChange={(e) => timeToCloseChange(e.target.value)}
+          value={time_to_close}
+        />
         </div>
           <div>num_chickens: {num_chickens}</div>
+          <Input
+          placeholder="num_chickens"
+          onChange={(e) => numChickensChange(e.target.value)}
+          value={num_chickens}
+        />
           <div>num_chicken_in_coop: {num_chicken_in_coop}</div>
+          <Input
+          placeholder="num_chicken_in_coop"
+          onChange={(e) => numChickensInCoopChange(e.target.value)}
+          value={num_chicken_in_coop}
+        />
         </Col>
       </Row>
       <Row style={{ marginTop: 20 }}>

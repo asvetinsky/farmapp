@@ -12,13 +12,15 @@ const CoopPageEdit = () => {
   const coopData = useCoop(id);
   const { coop } = coopData;
 
-  //console.log(coopData);
+ 
 
-  const [stateDoor, setStateDoor] = useState("");
-  const [timeToOpen, setTimeToOpen] = useState("");
-  const [timeToClose, setTimeToClose] = useState("");
-  const [numChickens, setNumChickens] = useState(0);
-  const [numChickensInCoop, setNumChickensInCoop] = useState(0);
+  console.log(coopData);
+
+  const [state_door, setStateDoor] = useState("");
+  const [time_to_open, setTimeToOpen] = useState("");
+  const [time_to_close, setTimeToClose] = useState("");
+  const [num_chickens, setNumChickens] = useState(0);
+  const [num_chicken_in_coop, setNumChickensInCoop] = useState(0);
 
   useEffect(() => {
     const {
@@ -28,11 +30,12 @@ const CoopPageEdit = () => {
       num_chickens,
       num_chicken_in_coop
     } = coop;
-    setStateDoor(stateDoor);
-    setTimeToOpen(timeToOpen);
-    setTimeToClose(timeToClose);
-    setNumChickens(numChickens);
-    setNumChickensInCoop(numChickensInCoop);
+
+    setStateDoor(state_door);
+    setTimeToOpen(time_to_open);
+    setTimeToClose(time_to_close);
+    setNumChickens(num_chickens);
+    setNumChickensInCoop(num_chicken_in_coop);
   }, [coop]);
 
   const handleStateDoorChange = (value) => setStateDoor(value);
@@ -45,17 +48,27 @@ const CoopPageEdit = () => {
     const { id_device } = coop;
     try {
       const saveCoop = createCoopObject(
-        /*state_door,
+        state_door,
         time_to_open,
         time_to_close,
         num_chickens,
-        num_chicken_in_coop*/
+        num_chicken_in_coop
       );
-      await axios.post(
+     /* await axios.put(
         `https://guarded-inlet-61842.herokuapp.com/api/coop/${id_device}`,
         saveCoop
-      );
-      push(`/api/coop/${id_device}`);
+      );*/
+      await axios({
+        method: 'PUT',
+        url: `https://guarded-inlet-61842.herokuapp.com/api/coop/${id_device}`,
+        timeout: 3000,
+        data: saveCoop,
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+      push(`/coop/${id}`);
     } catch (error) {}
   };
 
@@ -63,11 +76,11 @@ const CoopPageEdit = () => {
   const createCoopObject = () => {
     let coopNew = {
       ...coop,
-      state_door: stateDoor,
-      time_to_open: timeToOpen,
-      time_to_close: timeToClose,
-      num_chickens: numChickens,
-      num_chicken_in_coop: numChickensInCoop,
+      state_door: state_door,
+      time_to_open: time_to_open,
+      time_to_close: time_to_close,
+      num_chickens: num_chickens,
+      num_chicken_in_coop: num_chicken_in_coop,
     };
     Object.keys(coopNew).map((key) => {
       if (
@@ -84,16 +97,16 @@ const CoopPageEdit = () => {
  
   return (
     <Template 
-      coopData={coopData}
-      //stateDoor={state_door}
+      //coopData={coopData}
+      state_door={state_door}
       stateDoorChange={handleStateDoorChange}
-      //timeToOpen={time_to_open}
+      time_to_open={time_to_open}
       timeToOpenChange={handleTimeToOpenChange}
-      //timeToClose={time_to_close}
+      time_to_close={time_to_close}
       timeToCloseChange={handletimeToCloseChange}
-      //numChickens={num_chickens}
+      num_chickens={num_chickens}
       numChickensChange={handleNumChickensChange}
-     // numChickensInCoop={num_chicken_in_coop}
+      num_chicken_in_coop={num_chicken_in_coop}
       numChickensInCoopChange={handleNumChickensInCoopChange}
       onSaveClicked={handleOnSaveClicked}
     />

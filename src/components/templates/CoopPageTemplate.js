@@ -20,8 +20,9 @@ const MainPageTemplate = ({coopData}) => {
     time_to_close,
     num_chickens,
     num_chicken_in_coop,
-    num_aggs,
+    url_images,
   } = coop;
+
 
   const handleGoToCoops = () => push(`/`);
   const handleGoToCoopEdit = () => push(`/coop/edit/${id_device}`);
@@ -41,6 +42,7 @@ const MainPageTemplate = ({coopData}) => {
 
       <Row>
         <Col>
+        <img src={url_images} alt="coopImage" width="300"></img>
         <div>
           state door: {state_door ? 'Close' : 'Open'}
         </div>

@@ -6,10 +6,11 @@ import Error from "../molecules/Error";
 import { Col, Row, Button, Switch  } from "antd";
 import ContentHeading from "../atoms/ContentHeading";
 
-const MainPageTemplate = ({coopsData}) => {
+const MainPageTemplate = ({coopsData,onClickNewCoop}) => {
 
   const { push } = useHistory();
   const handleGoToCoopDetail = (id) => push(`/coop/${id}`);
+  const handleAddNewCoop = () => push(`/coop/add`);
 
   const { isLoading, coops, error } = coopsData;
 
@@ -49,6 +50,15 @@ const MainPageTemplate = ({coopsData}) => {
           <ContentHeading>Coops</ContentHeading>
         </Col>
         <Col>
+        <Button
+            type="default"
+            shape="round"
+            size="large"
+            icon={<i className="fas fa-utensils"></i>}
+            onClick={onClickNewCoop}
+          >
+            New coop
+          </Button>
         </Col>
       </Row>
 

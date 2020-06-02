@@ -9,12 +9,14 @@ const MainPage = () => {
   
   const { push } = useHistory();
   const coopsData = useCoops();
+  const handleGoNewToCoop = () => push("/coop-add");
 
   //console.log(coopsData);
 
   return (
     <Template 
       coopsData={coopsData}
+      onClickNewCoop={handleGoNewToCoop}
     />
   );
 };
